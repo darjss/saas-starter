@@ -4,7 +4,9 @@ import { CloudflareStateStore } from "alchemy/state";
 import { Astro } from "alchemy/cloudflare";
 
 const app = await alchemy("saas-starter", {
-  stateStore: (scope) => new CloudflareStateStore(scope),
+  stateStore: process.env.ALCHEMY_STATE_TOKEN
+    ? (scope) => new CloudflareStateStore(scope)
+    : undefined,
 });
 
 export const worker = await Astro("website");
