@@ -1,11 +1,254 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import StarterDemo from "../components/StarterDemo";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const launchNotes = [
+  {
+    copy: "Starter wiring for Cloudflare, Astro, and product-facing pages.",
+    label: "Deploy path",
+  },
+  {
+    copy: "Solid islands where interaction matters, static HTML everywhere else.",
+    label: "Interaction model",
+  },
+  {
+    copy: "Zaidan components already installed for the first product pass.",
+    label: "UI baseline",
+  },
+];
+
+const featureRail = [
+  {
+    detail: "Use the same repo for launch pages, account flows, and product docs.",
+    title: "One codebase, cleaner boundaries",
+  },
+  {
+    detail: "Local Wrangler state now generates from `bun run dev` without extra cleanup.",
+    title: "Local dev behaves like a starter should",
+  },
+  {
+    detail: "Signals, tabs, inputs, and pricing logic are already wired into a demo island.",
+    title: "Interactive pieces are not bolted on later",
+  },
+];
+
+const deliverySteps = [
+  {
+    body: "Drop in your pricing model, rename the workspace, and keep the existing deployment path.",
+    step: "Shape the offer",
+  },
+  {
+    body: "Swap demo copy for your onboarding, billing, and release notes content.",
+    step: "Map the product story",
+  },
+  {
+    body: "Carry the same components into the app shell instead of rebuilding the design language later.",
+    step: "Extend into the product",
+  },
+];
 ---
 
-<Layout>
-	<Welcome />
+<Layout
+	description="An Astro, Solid, Tailwind v4, and Cloudflare starter with Zaidan components and a product-ready landing page."
+	title="Threadline Starter"
+>
+	<div class="relative overflow-hidden bg-[linear-gradient(180deg,#f5f1e8_0%,#f8f7f4_46%,#ffffff_100%)] text-zinc-950">
+		<div class="pointer-events-none absolute inset-x-0 top-0 h-[34rem] bg-[radial-gradient(circle_at_18%_18%,rgba(161,98,7,0.14),transparent_34%),radial-gradient(circle_at_82%_24%,rgba(24,24,27,0.1),transparent_26%),linear-gradient(135deg,rgba(255,255,255,0.75),transparent)]" />
+		<div class="pointer-events-none absolute right-0 top-32 hidden h-72 w-72 rounded-full bg-amber-100/60 blur-3xl lg:block" />
+
+		<main class="relative">
+			<section class="min-h-[100dvh] px-4 pb-14 pt-6 sm:px-6 lg:px-8">
+				<div class="mx-auto flex max-w-[1400px] flex-col">
+					<div class="flex items-center justify-between border-b border-zinc-200/70 pb-4">
+						<div class="flex items-center gap-3">
+							<div class="flex h-11 w-11 items-center justify-center rounded-[1.1rem] border border-zinc-300 bg-white text-sm font-semibold tracking-[0.22em] text-zinc-900 shadow-[0_18px_40px_-26px_rgba(24,24,27,0.28)]">
+								TL
+							</div>
+							<div>
+								<div class="text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-zinc-500">
+									Threadline
+								</div>
+								<div class="text-sm text-zinc-600">Astro starter for subscription products</div>
+							</div>
+						</div>
+
+						<div class="hidden items-center gap-3 md:flex">
+							<a
+								class="text-sm text-zinc-600 transition-colors hover:text-zinc-950"
+								href="#starter-notes"
+							>
+								Starter Notes
+							</a>
+							<a
+								class="text-sm text-zinc-600 transition-colors hover:text-zinc-950"
+								href="#demo"
+							>
+								Demo
+							</a>
+							<a
+								class="group/button z-button inline-flex shrink-0 select-none items-center justify-center rounded-2xl whitespace-nowrap border border-transparent px-4 py-2.5 text-sm font-medium outline-none transition-all z-button-variant-outline z-button-size-sm"
+								href="https://zaidan.carere.dev"
+								rel="noreferrer"
+								target="_blank"
+							>
+								View Zaidan
+							</a>
+						</div>
+					</div>
+
+					<div class="grid flex-1 gap-10 py-10 lg:grid-cols-[0.88fr_1.12fr] lg:items-end lg:gap-14 lg:py-16">
+						<div class="max-w-2xl">
+							<div class="inline-flex items-center gap-2 rounded-full border border-zinc-300/80 bg-white/80 px-3 py-1.5 text-[0.7rem] font-semibold uppercase tracking-[0.24em] text-zinc-600 shadow-[inset_0_1px_0_rgba(255,255,255,0.85)]">
+								<span class="h-2 w-2 rounded-full bg-amber-600"></span>
+								Tailwind v4, Solid islands, Cloudflare adapter
+							</div>
+
+							<h1 class="mt-8 text-5xl font-semibold tracking-[-0.06em] text-zinc-950 sm:text-6xl lg:text-[5.6rem] lg:leading-[0.93]">
+								A sharper first pass for the SaaS you actually want to launch.
+							</h1>
+
+							<p class="mt-6 max-w-[37rem] text-base leading-relaxed text-zinc-600 sm:text-lg">
+								This starter is set up for product work, not template archaeology. You get
+								Astro on Cloudflare, Solid for small interactive islands, Tailwind v4, and a
+								Zaidan component baseline that already feels like software.
+							</p>
+
+							<div class="mt-8 flex flex-wrap gap-3">
+								<a
+									class="group/button z-button inline-flex shrink-0 select-none items-center justify-center rounded-2xl whitespace-nowrap border border-transparent px-5 py-3 text-sm font-medium outline-none transition-all active:translate-y-[1px] z-button-variant-default z-button-size-default"
+									href="#demo"
+								>
+									See the live demo
+								</a>
+								<a
+									class="group/button z-button inline-flex shrink-0 select-none items-center justify-center rounded-2xl whitespace-nowrap border border-transparent px-5 py-3 text-sm font-medium outline-none transition-all active:translate-y-[1px] z-button-variant-outline z-button-size-default"
+									href="#delivery"
+								>
+									Read the rollout
+								</a>
+							</div>
+
+							<div class="mt-10 grid gap-4 sm:grid-cols-2">
+								<div class="rounded-[1.6rem] border border-zinc-200/80 bg-white/90 p-5 shadow-[0_24px_55px_-34px_rgba(24,24,27,0.28)]">
+									<div class="text-[0.7rem] font-semibold uppercase tracking-[0.26em] text-zinc-500">
+										What changed
+									</div>
+									<div class="mt-3 text-2xl font-semibold tracking-tight text-zinc-950">
+										Core UI is already wired
+									</div>
+									<p class="mt-2 text-sm leading-relaxed text-zinc-600">
+										Button, input, badge, tabs, and separator now come from the Zaidan
+										registry instead of a generic starter bundle.
+									</p>
+								</div>
+
+								<div class="rounded-[1.6rem] border border-zinc-200/80 bg-zinc-950 p-5 text-zinc-50 shadow-[0_28px_65px_-40px_rgba(24,24,27,0.6)]">
+									<div class="text-[0.7rem] font-semibold uppercase tracking-[0.26em] text-zinc-400">
+										Build state
+									</div>
+									<div class="mt-3 text-2xl font-semibold tracking-tight">Passing</div>
+									<p class="mt-2 text-sm leading-relaxed text-zinc-300">
+										Local Wrangler generation, TypeScript checks, and production build are all
+										running cleanly again.
+									</p>
+								</div>
+							</div>
+						</div>
+
+						<div id="demo" class="lg:pb-4">
+							<StarterDemo client:load />
+						</div>
+					</div>
+				</div>
+			</section>
+
+			<section id="starter-notes" class="px-4 py-10 sm:px-6 lg:px-8">
+				<div class="mx-auto grid max-w-[1400px] gap-8 lg:grid-cols-[1.12fr_0.88fr]">
+					<div class="rounded-[2rem] border border-zinc-200 bg-white/90 p-6 shadow-[0_30px_80px_-38px_rgba(24,24,27,0.22)] sm:p-8">
+						<div class="max-w-xl">
+							<div class="text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-zinc-500">
+								Starter Notes
+							</div>
+							<h2 class="mt-4 text-3xl font-semibold tracking-[-0.05em] text-zinc-950 sm:text-4xl">
+								The repo already behaves more like a product base than a blank scaffold.
+							</h2>
+						</div>
+
+						<div class="mt-8 grid gap-5">
+							{launchNotes.map((note) => (
+								<div class="grid gap-2 border-t border-zinc-200 pt-5 first:border-t-0 first:pt-0">
+									<div class="text-sm font-medium text-zinc-900">{note.label}</div>
+									<div class="max-w-[42rem] text-sm leading-relaxed text-zinc-600">
+										{note.copy}
+									</div>
+								</div>
+							))}
+						</div>
+					</div>
+
+					<div class="grid gap-4">
+						{featureRail.map((item, index) => (
+							<div
+								class:list={[
+									"rounded-[1.75rem] border border-zinc-200 p-6 shadow-[0_24px_60px_-42px_rgba(24,24,27,0.22)]",
+									index === 1 ? "bg-zinc-950 text-zinc-50 lg:ml-10" : "bg-[#f4efe6] text-zinc-950",
+								]}
+							>
+								<div
+									class:list={[
+										"text-[0.7rem] font-semibold uppercase tracking-[0.26em]",
+										index === 1 ? "text-zinc-400" : "text-zinc-500",
+									]}
+								>
+									0{index + 1}
+								</div>
+								<h3 class="mt-4 text-2xl font-semibold tracking-tight">{item.title}</h3>
+								<p
+									class:list={[
+										"mt-3 text-sm leading-relaxed",
+										index === 1 ? "text-zinc-300" : "text-zinc-600",
+									]}
+								>
+									{item.detail}
+								</p>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+
+			<section id="delivery" class="px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+				<div class="mx-auto grid max-w-[1400px] gap-8 lg:grid-cols-[0.78fr_1.22fr]">
+					<div class="max-w-md">
+						<div class="text-[0.7rem] font-semibold uppercase tracking-[0.28em] text-zinc-500">
+							Delivery Path
+						</div>
+						<h2 class="mt-4 text-3xl font-semibold tracking-[-0.05em] text-zinc-950 sm:text-4xl">
+							Start with the public face, then carry the same language into the app.
+						</h2>
+						<p class="mt-4 text-base leading-relaxed text-zinc-600">
+							The goal is to avoid the usual split where the landing page feels polished and
+							the actual product starts from scratch. This starter keeps those surfaces close.
+						</p>
+					</div>
+
+					<div class="grid gap-4">
+						{deliverySteps.map((item, index) => (
+							<div class="grid gap-4 rounded-[1.75rem] border border-zinc-200 bg-white/90 p-6 shadow-[0_22px_55px_-40px_rgba(24,24,27,0.22)] sm:grid-cols-[120px_1fr] sm:p-7">
+								<div class="text-[0.72rem] font-semibold uppercase tracking-[0.28em] text-zinc-500">
+									Step 0{index + 1}
+								</div>
+								<div>
+									<h3 class="text-xl font-semibold tracking-tight text-zinc-950">{item.step}</h3>
+									<p class="mt-2 max-w-[42rem] text-sm leading-relaxed text-zinc-600">
+										{item.body}
+									</p>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+		</main>
+	</div>
 </Layout>

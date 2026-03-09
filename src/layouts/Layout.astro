@@ -1,5 +1,10 @@
 ---
 import "../styles/global.css";
+
+const {
+	description = "Astro starter with Solid islands, Tailwind v4, Cloudflare deployment, and Zaidan UI.",
+	title = "Threadline Starter",
+} = Astro.props;
 ---
 
 <!doctype html>
@@ -8,10 +13,11 @@ import "../styles/global.css";
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="description" content={description} />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>{title}</title>
 	</head>
-	<body>
+	<body class="bg-background text-foreground antialiased">
 		<slot />
 	</body>
 </html>
@@ -21,6 +27,6 @@ import "../styles/global.css";
 	body {
 		margin: 0;
 		width: 100%;
-		height: 100%;
+		min-height: 100%;
 	}
 </style>

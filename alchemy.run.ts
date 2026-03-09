@@ -1,7 +1,7 @@
 import alchemy from "alchemy";
 import { GitHubComment } from "alchemy/github";
 import { CloudflareStateStore } from "alchemy/state";
-import { Astro } from "alchemy/cloudflare";
+import { Astro, D1Database, KVNamespace, R2Bucket } from "alchemy/cloudflare";
 
 const app = await alchemy("saas-starter", {
   stateStore: process.env.ALCHEMY_STATE_TOKEN
@@ -9,12 +9,55 @@ const app = await alchemy("saas-starter", {
     : undefined,
 });
 
-export const worker = await Astro("website");
+const db = await D1Database("db", {
+  name: "saas-starter-db",
+  migrationsDir: "./drizzle/migrations",
+  migrationsTable: "drizzle_migrations",
+});
+
+const bucket = await R2Bucket("bucket", {
+  name: "saas-starter-bucket",
+});
+
+const cache = await KVNamespace("cache", {
+  title: "saas-starter-cache",
+});
+
+const session = await KVNamespace("session", {
+  title: "saas-starter-session",
+});
+
+export const worker = await Astro("website", {
+  bindings: {
+    DB: db,
+    BUCKET: bucket,
+    CACHE: cache,
+    SESSION: session,
+    BETTER_AUTH_SECRET: alchemy.secret(
+      process.env.BETTER_AUTH_SECRET,
+      "BETTER_AUTH_SECRET",
+    ),
+    ...(process.env.BETTER_AUTH_URL
+      ? { BETTER_AUTH_URL: process.env.BETTER_AUTH_URL }
+      : {}),
+    ...(process.env.TRUSTED_ORIGINS
+      ? { TRUSTED_ORIGINS: process.env.TRUSTED_ORIGINS }
+      : {}),
+  },
+  compatibilityDate: "2026-03-09",
+  compatibilityFlags: ["nodejs_als"],
+  dev: {
+    command: "astro dev --host 127.0.0.1 --port 4321",
+  },
+  observability: {
+    enabled: true,
+  },
+  url: true,
+});
 
 console.log({
   url: worker.url,
 });
-
 
 if (process.env.PULL_REQUEST) {
   const previewUrl = worker.url;
