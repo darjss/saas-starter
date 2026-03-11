@@ -75,7 +75,7 @@ export function getAuthSubtitle(mode: AuthMode, plan: PaidPlanKey | null) {
 
   return mode === "sign-up"
     ? "Start a new account with email and password."
-    : "Sign in to manage billing and subscription state.";
+    : "Sign in to open your app workspace and manage subscription state.";
 }
 
 export function getAuthSubmitLabel(

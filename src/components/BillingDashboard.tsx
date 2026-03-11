@@ -2,7 +2,6 @@ import { useQuery } from "@tanstack/solid-query";
 import { For, Show, Suspense, createMemo, createSignal } from "solid-js";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonVariants } from "@/components/ui/button";
-import SolidQueryProvider from "@/components/SolidQueryProvider";
 import { authClient } from "@/lib/auth-client";
 import {
   exceedsPlanLimits,
@@ -375,9 +374,5 @@ function BillingDashboardContent(props: BillingDashboardProps) {
 }
 
 export default function BillingDashboard(props: BillingDashboardProps) {
-  return (
-    <SolidQueryProvider>
-      <BillingDashboardContent {...props} />
-    </SolidQueryProvider>
-  );
+  return <BillingDashboardContent {...props} />;
 }

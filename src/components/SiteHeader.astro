@@ -4,8 +4,8 @@ const {
   user = null,
 } = Astro.props;
 
-const accountHref = user ? "/account/billing" : "/auth/sign-in";
-const accountLabel = user ? "Billing" : "Sign in";
+const accountHref = user ? "/app" : "/auth/sign-in";
+const accountLabel = user ? "Open app" : "Sign in";
 ---
 
 <header class="border-b border-zinc-200/70">

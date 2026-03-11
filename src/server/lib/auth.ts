@@ -87,7 +87,7 @@ export function getAuth() {
             ),
           }),
           portal({
-            returnUrl: toAbsoluteUrl("/account/billing", env.BETTER_AUTH_URL),
+            returnUrl: toAbsoluteUrl("/app/billing", env.BETTER_AUTH_URL),
           }),
           webhooks({
             secret: env.POLAR_WEBHOOK_SECRET || "",

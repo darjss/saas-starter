@@ -75,7 +75,7 @@ export default function AuthForm(props: AuthFormProps) {
           return;
         }
 
-        window.location.assign(props.nextPath || "/account/billing");
+        window.location.assign(props.nextPath || "/app");
       } catch (error) {
         setSubmitError(getAuthSubmitErrorMessage(error, props.mode));
       }

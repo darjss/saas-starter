@@ -119,7 +119,7 @@ export default function CheckoutSuccess(props: CheckoutSuccessProps) {
       <Show when={syncState() === "synced"}>
         <div class="mt-6 rounded-[1.4rem] border border-emerald-200 bg-emerald-50 px-4 py-4 text-sm text-emerald-900">
           Your plan is now {resolvedPlan().name}. You can review billing and limits from the
-          billing page.
+          app billing page.
         </div>
       </Show>
 
@@ -137,7 +137,7 @@ export default function CheckoutSuccess(props: CheckoutSuccessProps) {
       </Show>
 
       <div class="mt-8 flex flex-wrap gap-3">
-        <a class="rounded-2xl border border-zinc-300 bg-white px-4 py-2.5 text-sm font-medium text-zinc-900" href="/account/billing">
+        <a class="rounded-2xl border border-zinc-300 bg-white px-4 py-2.5 text-sm font-medium text-zinc-900" href="/app/billing">
           Go to billing
         </a>
         <Button class="rounded-2xl" onClick={() => void syncCustomerState()} variant="outline">
