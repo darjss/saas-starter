@@ -2,6 +2,8 @@
 
 [![Deployed with Alchemy](https://alchemy.run/alchemy-badge.svg)](https://alchemy.run)
 
+Deployed app: https://saas-starter-website-readme.darjs.workers.dev
+
 ```sh
 bun create astro@latest -- --template basics
 ```

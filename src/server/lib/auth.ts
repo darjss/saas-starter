@@ -1,14 +1,12 @@
+import { env } from "cloudflare:workers";
 import { checkout, polar, portal, webhooks } from "@polar-sh/better-auth";
 import { Polar } from "@polar-sh/sdk";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { getDb } from "@/server/db";
-import { getRuntimeEnv } from "@/server/lib/runtime";
 import * as schema from "@/server/db/schema";
 
 function getTrustedOrigins() {
-  const env = getRuntimeEnv();
-
   return Array.from(
     new Set(
       [env.BETTER_AUTH_URL, env.TRUSTED_ORIGINS]
@@ -40,7 +38,6 @@ function logPolarEvent(event: string, payload: unknown) {
 }
 
 export function getAuth() {
-  const env = getRuntimeEnv();
   const polarServer = env.POLAR_SERVER === "production" ? "production" : "sandbox";
   const polarClient = new Polar({
     accessToken: env.POLAR_ACCESS_TOKEN || "",

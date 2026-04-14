@@ -7,6 +7,9 @@ import { CloudflareStateStore } from "alchemy/state";
 import { Astro, D1Database, KVNamespace, R2Bucket } from "alchemy/cloudflare";
 
 const APP_NAME = "saas-starter";
+const ALCHEMY_STAGE = getAlchemyStage();
+const STAGE_SUFFIX = ALCHEMY_STAGE === "production" ? "" : `-${ALCHEMY_STAGE}`;
+const RESOURCE_PREFIX = `${APP_NAME}${STAGE_SUFFIX}`;
 
 type EncryptedSecret = {
   ciphertext: string;
@@ -156,21 +159,21 @@ const app = await alchemy(APP_NAME, {
 });
 
 const db = await D1Database("db", {
-  name: "saas-starter-db",
+  name: `${RESOURCE_PREFIX}-db`,
   migrationsDir: "./drizzle/migrations",
   migrationsTable: "drizzle_migrations",
 });
 
 const bucket = await R2Bucket("bucket", {
-  name: "saas-starter-bucket",
+  name: `${RESOURCE_PREFIX}-bucket`,
 });
 
 const cache = await KVNamespace("cache", {
-  title: "saas-starter-cache",
+  title: `${RESOURCE_PREFIX}-cache`,
 });
 
 const session = await KVNamespace("session", {
-  title: "saas-starter-session",
+  title: `${RESOURCE_PREFIX}-session`,
 });
 
 export const worker = await Astro("website", {
