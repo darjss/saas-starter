@@ -1,16 +1,17 @@
-import alchemy from "alchemy/cloudflare/astro";
+import cloudflare from "@astrojs/cloudflare";
+import solidJs from "@astrojs/solid-js";
+import tailwindcss from "@tailwindcss/vite";
 import { defineConfig } from "astro/config";
 import { fileURLToPath } from "node:url";
 
-import solidJs from "@astrojs/solid-js";
-import tailwindcss from "@tailwindcss/vite";
-
-// https://astro.build/config
 export default defineConfig({
   output: "server",
-  adapter: alchemy(),
+  adapter: cloudflare({
+    platformProxy: { enabled: true },
+    imageService: "passthrough",
+    sessionKVBindingName: "SESSIONS",
+  }),
   integrations: [solidJs()],
-
   vite: {
     resolve: {
       alias: {

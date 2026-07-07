@@ -1,27 +1,22 @@
 {
   "extends": "astro/tsconfigs/strict",
-  "include": [
-    "alchemy.run.ts",
-    "types/**/*.ts",
-    ".astro/types.d.ts",
-    "**/*"
-  ],
-  "exclude": [
-    "dist"
-  ],
   "compilerOptions": {
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "verbatimModuleSyntax": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": [
-        "src/*"
-      ]
+      "@/*": ["src/*"]
     },
-    "types": [
-      "node",
-      "@cloudflare/workers-types",
-      "./types/env.d.ts"
-    ],
     "jsx": "preserve",
     "jsxImportSource": "solid-js"
-  }
+  },
+  "include": [
+    ".astro/types.d.ts",
+    "worker-configuration.d.ts",
+    "src",
+    "scripts",
+    "drizzle.config.ts"
+  ],
+  "exclude": ["dist", ".astro", "node_modules"]
 }
