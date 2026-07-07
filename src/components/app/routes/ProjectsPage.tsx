@@ -63,9 +63,7 @@ export const ProjectsPage = () => {
             <ul class="mt-6 divide-y rounded-lg border">
               <For
                 each={list()}
-                fallback={
-                  <li class="text-muted-foreground p-4 text-sm">No projects yet.</li>
-                }
+                fallback={<li class="text-muted-foreground p-4 text-sm">No projects yet.</li>}
               >
                 {(item) => <ProjectRow project={item} onDelete={() => remove(item.id)} />}
               </For>

@@ -14,9 +14,18 @@ const ownedProject = (projectId: string, ownerId: string) =>
 
 export const projectsRoute = new Elysia({ prefix: "/projects" })
   .use(authPlugin)
-  .get("/", ({ user }) => db.select().from(project).where(eq(project.ownerId, user.id)).orderBy(desc(project.createdAt)), {
-    requireAuth: true,
-  })
+  .get(
+    "/",
+    ({ user }) =>
+      db
+        .select()
+        .from(project)
+        .where(eq(project.ownerId, user.id))
+        .orderBy(desc(project.createdAt)),
+    {
+      requireAuth: true,
+    },
+  )
   .post(
     "/",
     async ({ user, body, status }) => {

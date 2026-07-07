@@ -17,8 +17,7 @@ export const BillingPage = () => {
   const state = useBillingState();
 
   const checkout = useMutation(() => ({
-    mutationFn: async (planSlug: string) =>
-      unwrap(await api.billing.checkout.post({ planSlug })),
+    mutationFn: async (planSlug: string) => unwrap(await api.billing.checkout.post({ planSlug })),
     onSuccess: (result) => window.location.assign(result.url),
     onError: (error) => toast.error(queryErrorMessage(error)),
   }));

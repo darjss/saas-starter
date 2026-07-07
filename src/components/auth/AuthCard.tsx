@@ -18,8 +18,7 @@ interface AuthCardProps {
 export const AuthCard = (props: AuthCardProps) => {
   const [tab, setTab] = createSignal("sign-in");
 
-  const google = () =>
-    signIn.social({ provider: "google", callbackURL: props.redirect });
+  const google = () => signIn.social({ provider: "google", callbackURL: props.redirect });
 
   return (
     <Card class="w-full max-w-md">

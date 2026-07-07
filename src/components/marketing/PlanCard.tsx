@@ -33,10 +33,7 @@ export const PlanCard = (props: { plan: Plan }) => {
             )}
           </For>
         </ul>
-        <Button
-          variant={props.plan.highlighted ? "default" : "outline"}
-          onClick={checkout}
-        >
+        <Button variant={props.plan.highlighted ? "default" : "outline"} onClick={checkout}>
           {props.plan.priceMonthly === 0 ? "Get started" : "Upgrade"}
         </Button>
       </CardContent>
