@@ -74,7 +74,7 @@ const envelope = (code: ErrorCode, message: string, details?: unknown): ErrorEnv
 export const errorPlugin = new Elysia({ name: "errors" })
   .error({ APP: AppError })
   .onError({ as: "scoped" }, ({ code, error, status }) => {
-    if (code === "APP") {
+    if (error instanceof AppError) {
       return status(error.status, envelope(error.code, error.message, error.details));
     }
     if (code === "VALIDATION") {
