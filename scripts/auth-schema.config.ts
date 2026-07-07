@@ -1,5 +1,5 @@
 import { sso } from "@better-auth/sso";
-import { checkout, polar, portal, webhooks } from "@polar-sh/better-auth";
+import { polar, portal, webhooks } from "@polar-sh/better-auth";
 import { Polar } from "@polar-sh/sdk";
 import Database from "better-sqlite3";
 import { betterAuth } from "better-auth";
@@ -20,11 +20,7 @@ export const auth = betterAuth({
     sso(),
     polar({
       client: new Polar({ accessToken: "schema-generation-only", server: "sandbox" }),
-      use: [
-        checkout({ products: [], successUrl: "/" }),
-        portal(),
-        webhooks({ secret: "schema-generation-only" }),
-      ],
+      use: [portal(), webhooks({ secret: "schema-generation-only" })],
     }),
   ],
 });

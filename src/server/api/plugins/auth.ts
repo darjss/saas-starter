@@ -12,12 +12,19 @@ export const authPlugin = new Elysia({ name: "auth" })
   })
   .macro({
     requireAuth: {
+      transform: ({ user, session }) => {
+        if (!user || !session) throw new UnauthorizedError();
+      },
       resolve: ({ user, session }) => {
         if (!user || !session) throw new UnauthorizedError();
         return { user, session };
       },
     },
     requireAdmin: {
+      transform: ({ user, session }) => {
+        if (!user || !session) throw new UnauthorizedError();
+        if (user.role !== "admin") throw new ForbiddenError();
+      },
       resolve: ({ user, session }) => {
         if (!user || !session) throw new UnauthorizedError();
         if (user.role !== "admin") throw new ForbiddenError();

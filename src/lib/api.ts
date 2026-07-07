@@ -26,14 +26,14 @@ const isEnvelope = (value: unknown): value is ErrorEnvelope =>
   typeof value === "object" &&
   value !== null &&
   "error" in value &&
-  typeof (value as ErrorEnvelope).error === "object";
+  typeof value.error === "object";
 
-interface TreatyResult<T> {
+interface TreatyResult<T, E, S> {
   data: T | null;
-  error: { status: unknown; value: unknown } | null;
+  error: { status: S; value: E } | null;
 }
 
-export const unwrap = <T>(result: TreatyResult<T>): T => {
+export const unwrap = <T, E, S>(result: TreatyResult<T, E, S>): T => {
   if (result.error) {
     const { value } = result.error;
     const status = typeof result.error.status === "number" ? result.error.status : 0;

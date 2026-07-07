@@ -78,7 +78,8 @@ export const errorPlugin = new Elysia({ name: "errors" })
       return status(error.status, envelope(error.code, error.message, error.details));
     }
     if (code === "VALIDATION") {
-      return status(422, envelope("validation", "Invalid request", error.all));
+      const details = error.all.map((issue) => ({ path: issue.path, message: issue.message }));
+      return status(422, envelope("validation", "Invalid request", details));
     }
     if (code === "NOT_FOUND") {
       return status(404, envelope("not_found", "Not found"));

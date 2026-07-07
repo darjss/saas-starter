@@ -1,4 +1,4 @@
-import { checkout, polar, portal, webhooks } from "@polar-sh/better-auth";
+import { polar, portal, webhooks } from "@polar-sh/better-auth";
 import { Polar } from "@polar-sh/sdk";
 import { env } from "@/env";
 import { NotFoundError } from "@/server/api/errors";
@@ -43,7 +43,8 @@ export const polarProvider: PaymentProvider = {
         subscriptionStatus: active ? "active" : "none",
         portalConfigured: true,
       };
-    } catch {
+    } catch (error) {
+      console.warn(`[polar] failed to load customer state for ${userId}`, error);
       return { activePlanSlug: null, subscriptionStatus: "none", portalConfigured: false };
     }
   },
@@ -52,11 +53,6 @@ export const polarProvider: PaymentProvider = {
     client,
     createCustomerOnSignUp: true,
     use: [
-      checkout({
-        products: [],
-        successUrl: "/app/billing?checkout_id={CHECKOUT_ID}",
-        authenticatedUsersOnly: true,
-      }),
       portal(),
       webhooks({
         secret: env.POLAR_WEBHOOK_SECRET,

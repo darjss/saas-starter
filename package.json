@@ -13,7 +13,7 @@
     "lint": "vp lint",
     "fmt": "vp fmt",
     "check": "astro check && vp lint",
-    "auth:generate": "better-auth generate --output src/server/db/auth-schema.ts --yes",
+    "auth:generate": "better-auth generate --output src/server/db/auth-schema.ts --config scripts/auth-schema.config.ts --yes",
     "db:generate": "drizzle-kit generate",
     "db:migrate:local": "wrangler d1 migrations apply saas-starter-db --local",
     "db:migrate:remote": "wrangler d1 migrations apply saas-starter-db --remote",

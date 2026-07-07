@@ -29,13 +29,10 @@ export function ColorModeProvider(
   const toggleColorMode = () => {
     setColorMode((prev) => (prev === "dark" ? "light" : "dark"));
 
-    // Update the HTML element class
     const html = document.documentElement;
     html.classList.remove("light", "dark");
     html.classList.add(untrack(colorMode));
 
-    // Set the cookie
-    // biome-ignore lint/suspicious/noDocumentCookie: <will find a better way to do this>
     document.cookie = `${ZAIDAN_COLOR_MODE_COOKIE_KEY}=${untrack(colorMode)}; path=/; max-age=31536000; SameSite=Lax`;
   };
 
